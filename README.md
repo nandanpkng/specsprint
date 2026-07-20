@@ -37,9 +37,21 @@ The local demo is deterministic so judges can reliably test it without accounts.
 - Connected source access must be scoped to the user’s workspace and OAuth permissions.
 - The demo source pack is fictional and contains no customer data.
 
-## Codex workflow
+## Installation & Supported Platforms
 
-This project was built in the primary Codex Build Week session. Codex turned the implementation plan into a runnable decision-artifact workflow, authored the structured PRD and ticket contracts, added source traceability and review boundaries, then implemented the responsive UI, API, tests, and submission collateral. Add the primary `/feedback` Session ID here and to Devpost before submitting.
+- **Supported Platforms:** macOS, Linux, Windows (Node.js 20+).
+- **Installation:** Clone repo, run `pnpm install`, `pnpm start`.
+- **Judge-Testable Path:** Run `pnpm start` and open `http://localhost:3003`. Select **Preview Linear tickets** to exercise the PRD-to-ticket handoff with pre-loaded representative source data.
+
+## Codex Workflow Narrative
+
+Built from scratch in the primary Codex Build Week session. Codex turned the architecture plan into a runnable decision-artifact workflow, authored the structured PRD and ticket contracts, added source traceability and review boundaries, and implemented the responsive UI, API, and automated test suite.
+
+**Codex Session ID:** [Insert Session ID from primary build thread]
+
+## Prior vs. New Work
+
+Built from scratch during OpenAI Build Week 2026 using OpenAI Codex and GPT-5.6. There is no pre-existing codebase or prior implementation.
 
 ## License
 
