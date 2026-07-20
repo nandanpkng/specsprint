@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{sourcePack}from'../src/services/demo-data.js';import{generatePrd,decompose}from'../src/services/prd-engine.js';
+test('generates a decision-ready PRD from multi-source context',()=>{const p=generatePrd(sourcePack);assert.equal(p.stories.length,3);assert.equal(p.goals.length,2);assert.equal(p.questions.length,2)});test('decomposes approved stories into reviewable tickets',()=>{const t=decompose(generatePrd(sourcePack));assert.equal(t.tickets.length,3);assert.equal(t.tickets[0].id,'ENG-214')});
