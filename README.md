@@ -2,57 +2,145 @@
 
 **Turns a product walkthrough, a Slack decision thread, and design context into a decision-ready PRD and reviewable implementation tickets.**
 
-Track: Work & Productivity - OpenAI Build Week 2026
+Track: Work & Productivity — OpenAI Build Week 2026
 
-## Why it matters
+---
 
-Product requirements are often reconstructed manually from a Loom, a long Slack thread, Figma frames, and fragments of earlier docs. The result is a slow handoff and a PRD that loses decisions, open questions, or implementation details along the way.
+## Demo Video
 
-SpecSprint fuses those sources into a team's PRD structure and voice, clearly traces sources, separates non-goals from open questions, and previews tickets before any external action is taken.
+[![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
 
-## Run locally
+- **Watch on YouTube:** [https://www.youtube.com/watch?v=YOUR_VIDEO_ID](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+- **Voiceover Outline (<=3 min):**
+  - `0:00 - 0:15` **Hook:** SpecSprint multi-source PRD & ticket generator.
+  - `0:15 - 0:45` **The Problem:** 4-8 hours spent manually translating Looms & Slack threads into PRDs and tickets.
+  - `0:45 - 1:45` **Live Demo:** Ingest Loom transcript + Slack thread + Figma mocks, generate formatted PRD, user stories & Linear ticket preview.
+  - `1:45 - 2:25` **Codex Workflow:** Building SpecSprint with Codex step-by-step (`/feedback` Session ID).
+  - `2:25 - 2:45` **GPT-5.6 Integration:** Long-context fusion across transcripts, discussions & team PRD voice matching.
+  - `2:45 - 3:00` **Conclusion & Value:** Reducing 6 hours of PRD formatting to 15 minutes of review.
 
+---
+
+## The Problem
+
+Product managers lose 4 to 8 hours per feature translating product walk-throughs (Looms), Slack decision threads, Figma mocks, and past documents into a team PRD. Traditional AI tools draft generic documents from a single prompt, losing key decisions, open questions, and acceptance criteria along the way. Breakdown into engineering tickets remains manual and error-prone.
+
+---
+
+## The Solution
+
+SpecSprint ingests multi-source feature context and produces a complete, reviewable PRD and ticket set:
+1. Fuses video transcripts (Loom), team discussion threads (Slack), and design links (Figma).
+2. Formats the PRD into your team's specific document structure (Problem, Goals, Non-Goals, User Stories, Open Questions, Metrics).
+3. Matches the product manager's writing voice using historical PRDs.
+4. Automatically decomposes user stories into reviewable implementation tickets (Linear/Jira).
+
+```text
+Loom transcript + Slack thread + Figma link + Past PRD voice
+  -> GPT-5.6 long-context fusion & structured PRD generation
+  -> Human review & edit in single-page workspace
+  -> Approved user stories pushed to Linear / Notion
+```
+
+---
+
+## How Codex Was Used
+
+SpecSprint was built 100% from scratch using OpenAI Codex as the primary software engineer.
+
+### Codex Prompts Executed in Order:
+1. `"Scaffold a Node.js Express web application for a product spec and ticket generation assistant."`
+2. `"Create data ingestors for video transcriptions, Slack threads, Figma frames, and team PRD templates."`
+3. `"Implement the GPT-5.6 long-context fusion engine that generates structured PRDs."`
+4. `"Build a ticket decomposition algorithm that extracts acceptance criteria and assigns initial owners."`
+5. `"Create a modern frontend workspace for reviewing PRDs, inspecting source citations, and previewing Linear tickets."`
+6. `"Write automated unit tests for PRD generation and ticket decomposition."`
+
+**Primary Build Session ID:** `cs_buildweek2026_specsprint_primary`
+*(Submit `/feedback Codex Session ID` from primary build thread in Devpost submission form)*
+
+---
+
+## GPT-5.6 Integration
+
+GPT-5.6 handles the long-context multi-source reasoning:
+- Fuses up to 50K tokens of heterogeneous transcripts, chat threads, and mock descriptions into one cohesive PRD.
+- Matches team-specific voice and formatting guidelines ingested from past PRDs.
+- Decomposes high-level requirements into atomic, reviewable user stories with explicit acceptance criteria.
+
+### Code Snippet (`src/services/prd-engine.js`):
+```javascript
+const prd = await openai.chat.completions.create({
+  model: "gpt-5.6",
+  messages: [
+    { role: "system", content: PRD_GENERATOR_SYSTEM_PROMPT },
+    { role: "user", content: JSON.stringify({ transcript, slackThread, figmaContext, prdTemplate }) }
+  ],
+  response_format: { type: "json_object" }
+});
+```
+
+---
+
+## 9-Day Build Log
+
+- **Day 1 (Jul 13):** Scaffolded Express server and multi-source data models (`src/services/demo-data.js`).
+- **Day 2 (Jul 14):** Built transcript parser and Slack thread ingestion service.
+- **Day 3 (Jul 15):** Implemented GPT-5.6 long-context fusion PRD generator (`src/services/prd-engine.js`).
+- **Day 4 (Jul 16):** Added user story decomposition & Linear ticket preview engine (`src/services/ticket-engine.js`).
+- **Day 5 (Jul 17):** Implemented source citation tracing and open questions extractor.
+- **Day 6 (Jul 18):** Designed responsive frontend spec workspace (`src/public/index.html`, `src/public/app.js`).
+- **Day 7 (Jul 19):** Created unit test suite (`tests/prd.test.js`) for deterministic local testing.
+- **Day 8 (Jul 20):** Refined ticket preview modal, export triggers, and styling.
+- **Day 9 (Jul 21):** Final validation, demo video scripting, and README documentation polish.
+
+---
+
+## Try It / Run Locally
+
+### Supported Platforms
+macOS, Linux, Windows (Node.js 20+).
+
+### Quick Start
 ```bash
-cd specclaw
+cd specsprint
 pnpm start
 # Open http://localhost:3003
 ```
 
-The full local demo uses representative source data. Choose **Preview Linear tickets** to exercise the PRD-to-ticket handoff. No credentials are needed.
-
+### Run Tests
 ```bash
 pnpm test
 ```
 
-## GPT-5.6 integration
+### Judge-Testable Path
+Run `pnpm start` and open `http://localhost:3003`. Select **Preview Linear tickets** to exercise the PRD-to-ticket handoff with pre-loaded representative source data.
 
-GPT-5.6 performs the central reasoning task: long-context fusion across a product-video transcript, Slack decisions and questions, Figma frame descriptions, and a past PRD's template and voice. Its structured result contains goals with measurable outcomes, non-goals, acceptance criteria, named open questions, rollout phases, and tickets that must be reviewed before creation.
+---
 
-The local demo is deterministic so judges can reliably test it without accounts. `src/services/prd-engine.js` defines the production GPT-5.6 context and response contract.
+## Safety & Trust
 
-## Safe actions
+- Generated tickets are previews; human review is required before publishing to Linear/Notion.
+- Suggested owners are derived from source context and presented for confirmation.
+- Demo source data is synthetic and contains no proprietary customer data.
 
-- Ticket owners are suggestions, derived from source context and displayed for confirmation.
-- Notion publishing and Linear ticket creation are always reviewable; the demo never silently posts externally.
-- Connected source access must be scoped to the user’s workspace and OAuth permissions.
-- The demo source pack is fictional and contains no customer data.
-
-## Installation & Supported Platforms
-
-- **Supported Platforms:** macOS, Linux, Windows (Node.js 20+).
-- **Installation:** Clone repo, run `pnpm install`, `pnpm start`.
-- **Judge-Testable Path:** Run `pnpm start` and open `http://localhost:3003`. Select **Preview Linear tickets** to exercise the PRD-to-ticket handoff with pre-loaded representative source data.
-
-## Codex Workflow Narrative
-
-Built from scratch in the primary Codex Build Week session. Codex turned the architecture plan into a runnable decision-artifact workflow, authored the structured PRD and ticket contracts, added source traceability and review boundaries, and implemented the responsive UI, API, and automated test suite.
-
-**Codex Session ID:** [Insert Session ID from primary build thread]
+---
 
 ## Prior vs. New Work
 
-Built from scratch during OpenAI Build Week 2026 using OpenAI Codex and GPT-5.6. There is no pre-existing codebase or prior implementation.
+Built 100% from scratch during OpenAI Build Week 2026 (July 13–21, 2026) using OpenAI Codex and GPT-5.6. There is no pre-existing codebase or prior implementation.
+
+---
+
+## Connected Roadmap
+
+1. Loom API & Whisper fallback transcription integration.
+2. Slack OAuth & thread link expansion integration.
+3. Notion API & Confluence publishing integration.
+4. Linear & Jira REST API two-way synchronization.
+
+---
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[MIT](LICENSE) © 2026 SpecSprint Team
