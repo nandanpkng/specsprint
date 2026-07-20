@@ -41,10 +41,6 @@ The local demo is deterministic so judges can reliably test it without accounts.
 
 This project was built in the primary Codex Build Week session. Codex turned the implementation plan into a runnable decision-artifact workflow, authored the structured PRD and ticket contracts, added source traceability and review boundaries, then implemented the responsive UI, API, tests, and submission collateral. Add the primary `/feedback` Session ID here and to Devpost before submitting.
 
-## Submission
-
-See [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md) for final Devpost requirements and a 3-minute demo outline.
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
