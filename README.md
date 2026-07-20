@@ -9,6 +9,7 @@ Track: Work & Productivity — OpenAI Build Week 2026
 ## Demo Video
 
 - **Watch on YouTube:** https://youtu.be/jxFUUdI96kg
+
 ---
 
 ## The Problem
@@ -85,23 +86,35 @@ const prd = await openai.chat.completions.create({
 
 ## Try It / Run Locally
 
-### Supported Platforms
-macOS, Linux, Windows (Node.js 20+).
+### Prerequisites & Supported Platforms
+- **Supported Platforms:** macOS, Linux, Windows
+- **Runtime:** Node.js 20+
+- **Credentials:** None required! The application includes a self-contained, offline-testable demo mode with pre-loaded Loom video transcripts, Slack threads, Figma mock links, and PRD templates.
 
 ### Quick Start
+
 ```bash
+# 1. Clone repository
+git clone https://github.com/nandanpkng/specsprint.git
 cd specsprint
-pnpm start
-# Open http://localhost:3003
+
+# 2. Start local server (zero npm dependencies required)
+pnpm start   # or npm start / node src/server.js
+
+# 3. Open in browser
+# http://localhost:3003
 ```
 
-### Run Tests
+### Self-Contained Judge Walkthrough
+1. Navigate to `http://localhost:3003` in your web browser.
+2. Review the multi-source input context (walkthrough transcript, Slack thread, Figma mocks).
+3. Inspect the formatted PRD with problem statements, user stories, acceptance criteria, and open questions.
+4. Click **Preview Linear tickets** to exercise the PRD-to-ticket decomposition and assignment workflow.
+
+### Run Automated Tests
 ```bash
-pnpm test
+pnpm test   # or npm test / node --test
 ```
-
-### Judge-Testable Path
-Run `pnpm start` and open `http://localhost:3003`. Select **Preview Linear tickets** to exercise the PRD-to-ticket handoff with pre-loaded representative source data.
 
 ---
 
