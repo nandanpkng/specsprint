@@ -8,17 +8,7 @@ Track: Work & Productivity — OpenAI Build Week 2026
 
 ## Demo Video
 
-[![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
-
 - **Watch on YouTube:** [https://www.youtube.com/watch?v=YOUR_VIDEO_ID](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
-- **Voiceover Outline (<=3 min):**
-  - `0:00 - 0:15` **Hook:** SpecSprint multi-source PRD & ticket generator.
-  - `0:15 - 0:45` **The Problem:** 4-8 hours spent manually translating Looms & Slack threads into PRDs and tickets.
-  - `0:45 - 1:45` **Live Demo:** Ingest Loom transcript + Slack thread + Figma mocks, generate formatted PRD, user stories & Linear ticket preview.
-  - `1:45 - 2:25` **Codex Workflow:** Building SpecSprint with Codex step-by-step (`/feedback` Session ID).
-  - `2:25 - 2:45` **GPT-5.6 Integration:** Long-context fusion across transcripts, discussions & team PRD voice matching.
-  - `2:45 - 3:00` **Conclusion & Value:** Reducing 6 hours of PRD formatting to 15 minutes of review.
-
 ---
 
 ## The Problem
@@ -55,9 +45,6 @@ SpecSprint was built 100% from scratch using OpenAI Codex as the primary softwar
 4. `"Build a ticket decomposition algorithm that extracts acceptance criteria and assigns initial owners."`
 5. `"Create a modern frontend workspace for reviewing PRDs, inspecting source citations, and previewing Linear tickets."`
 6. `"Write automated unit tests for PRD generation and ticket decomposition."`
-
-**Primary Build Session ID:** `cs_buildweek2026_specsprint_primary`
-*(Submit `/feedback Codex Session ID` from primary build thread in Devpost submission form)*
 
 ---
 
